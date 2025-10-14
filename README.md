@@ -1,4 +1,4 @@
-# Emoji Reactor 🎭
+# Emoji Reactor
 
 A real-time camera-based emoji display application that uses MediaPipe to detect your poses and facial expressions, then displays corresponding emojis in a separate window.
 
@@ -106,19 +106,18 @@ Replace the image files with your own:
 
 ## Technical Details
 
-- **Framework**: OpenCV for camera capture and display
-- **AI Models**: MediaPipe Pose and FaceMesh solutions
-- **Image Processing**: Real-time RGB conversion and landmark detection
-- **Performance**: Optimized for real-time processing with confidence thresholds
+- Uses OpenCV for camera capture and display
+- MediaPipe Pose and FaceMesh for detection
+- Real-time RGB conversion and landmark detection
 
 ## Dependencies
 
-- Pinned in `requirements-lock.txt` for reproducibility
-- Main direct deps:
-  - `opencv-python` - Computer vision library
-  - `mediapipe` - Pose and Face Mesh detection
-  - `numpy` - Numerical computing
+- `opencv-python` - Computer vision library
+- `mediapipe` - Pose and Face Mesh detection
+- `numpy` - Numerical computing
+
+See `requirements.txt` for installation and `requirements-lock.txt` for pinned versions.
 
 ## License
 
-This project is for educational and personal use. Please ensure you have appropriate permissions for any emoji images you use.
+MIT License - see LICENSE file for details.
