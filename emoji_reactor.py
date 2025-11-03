@@ -414,11 +414,9 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
         # State machine to avoid flickering (keep state for at least 2 frames)
         if detected_state == last_emotion:
             current_emotion = detected_state
+            last_emotion = detected_state
         else:
-            last_emotion = current_emotion
-            # Only change if detected for one frame (will persist next frame)
-            current_emotion = detected_state
-        
+            last_emotion = detected_state        
         # Select emoji based on state
         emoji_map = {
             "SMILE": ("smile", "😊"),
