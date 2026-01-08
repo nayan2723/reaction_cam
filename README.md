@@ -1,162 +1,179 @@
-🎥 Emoji Reactor
+# 🎥 Emoji Reactor
 
-Emoji Reactor is a real-time, camera-powered emoji app that reacts to your facial expressions and poses like it’s reading your mind — but, you know, in a fun, non-creepy way.
-It uses MediaPipe for pose and face detection, and instantly throws the perfect emoji at you in a separate window.
+Emoji Reactor is a real-time, camera-powered emoji app that reacts to your facial expressions and poses — like it’s reading your mind, but in a fun, non-creepy way. It uses **MediaPipe** for pose + face detection and displays the correct emoji in a separate output window.
 
-⚡ Features
+---
 
-👐 Hand Detection – Raise both hands above your shoulders → 🙌
+## ⚡ Features
 
-😁 Smile Detection – Flash a smile → 😊
+* 👐 **Hand Detection** – Raise both hands above your shoulders → 🙌
+* 😁 **Smile Detection** – Flash a smile → 😊
+* 😐 **Neutral Mode** – Default relaxed face → 😐
+* ⚙️ **Real-Time Feedback** – Fast, accurate detection
+* 🔄 **Two-Window Display** – Live camera + emoji output
 
-😐 Default Mode – Chill face → 😐
+---
 
-⚙️ Real-Time Response – Fast, accurate, and live
+## 🧰 Requirements
 
-Basically, it’s your personal emoji mirror.
+* Python **3.12**
+* Webcam-enabled laptop/PC
+* Dependencies listed in `requirements.txt`
 
-🧰 Requirements
+---
 
-Python 3.12 (macOS: brew install python@3.12)
+## 🚀 Setup & Installation
 
-A laptop/PC with a webcam
+### 1️⃣ Clone the repository
 
-Dependencies listed in requirements.txt
+```
+git clone <your-repo-url>
+cd emoji-reactor
+```
 
-🚀 Setup & Installation
+### 2️⃣ Create a virtual environment
 
-Clone or download this repo
-
-Set up a virtual environment (Python 3.12 recommended)
-
-brew install python@3.12
-
+```
 python3.12 -m venv emoji_env
-source emoji_env/bin/activate
+source emoji_env/bin/activate   # macOS/Linux
+```
 
+### 3️⃣ Install dependencies
+
+```
 pip install -r requirements.txt
+```
 
+### 4️⃣ Add your emoji images
 
-Place your emoji images in the project folder:
+Place the required emoji files in the project folder:
 
-smile.jpg → Smiling face
+* **smile.jpg** → Smiling emoji
+* **plain.png** → Neutral emoji
+* **air.jpg** → Hands-up emoji
 
-plain.png → Neutral face
+---
 
-air.jpg → Hands up
+## 🎬 How to Run
 
-🎬 How to Run
+### **Option 1 — Run script**
 
-Fire it up!
-
-# Option 1: use the helper script
+```
 ./run.sh
+```
 
-# Option 2: manual mode
+### **Option 2 — Manual run**
+
+```
 source emoji_env/bin/activate
 python emoji_reactor.py
+```
 
+### Output
 
-Two windows will open:
+Two windows open:
 
-🖼️ Camera Feed → shows your live detection
+* 🖼️ **Camera Feed** – Real-time pose/face detection
+* 😃 **Emoji Output** – Shows emoji based on your expression/movement
 
-😃 Emoji Output → reacts to your mood and movement
+### Controls
 
-Controls:
+* Press **q** to quit
+* Raise both hands → 🙌
+* Smile → 😊
+* Neutral face → 😐
 
-Press q to quit
+---
 
-Raise your hands → 🙌
+## 🧠 How It Works
 
-Smile → 😊
+Emoji Reactor uses MediaPipe for two forms of detection:
 
-Straight face → 😐
+### **Pose Detection**
 
-🧠 How It Works
+* Tracks **wrist** + **shoulder** positions
+* If wrists > shoulders vertically → trigger hands-up 🙌
 
-It’s all powered by MediaPipe:
+### **Face Mesh Detection**
 
-Pose Detection – Tracks shoulder & wrist positions to detect raised hands
+* Measures mouth aspect ratio
+* Determines whether smile threshold is crossed
 
-Face Mesh – Reads mouth geometry to spot a smile
+### **Detection Priority Order**
 
-Detection Priority
+1. 🙌 Hands Up
+2. 😊 Smile
+3. 😐 Neutral
 
-🙌 Hands Up → Always wins (top priority)
+---
 
-😊 Smiling → When the mouth aspect ratio crosses the threshold
+## 🎛️ Customization
 
-😐 Neutral → Default chill mode
+### Adjust Smile Sensitivity
 
-🎛️ Customization
-Smile Sensitivity
+Inside `emoji_reactor.py`:
 
-Wanna tweak how easily it detects smiles?
-Open emoji_reactor.py and adjust:
-
+```
 SMILE_THRESHOLD = 0.35
+```
 
+* Lower → detects smiles more easily
+* Higher → more strict detection
 
-Lower (e.g., 0.30) → Detects smiles more easily
+### Change Emojis
 
-Higher (e.g., 0.40) → More strict, fewer false positives
+Replace these image files:
 
-Swap the Emojis
+* `smile.jpg`
+* `plain.png`
+* `air.jpg`
 
-Just replace the files with your own:
+---
 
-smile.jpg – Custom smile
+## 🧩 Troubleshooting
 
-plain.png – Custom neutral
+### 🪞 Camera Issues (macOS)
 
-air.jpg – Custom hands-up
+* Go to **System Settings → Privacy & Security → Camera**
+* Enable access for Terminal/VS Code
+* Restart the app
+* If needed, switch camera index:
 
-🧩 Troubleshooting
-🪞 Camera Not Working (macOS)
+```
+cv2.VideoCapture(1)
+```
 
-Go to System Settings → Privacy & Security → Camera
+### 🖼️ Emoji Missing
 
-Enable access for your terminal/VS Code/iTerm
+* Ensure image files exist
+* Verify filenames
+* Check image format/corruption
 
-Restart the app
+### 🤖 Detection Off
 
-Still not working? Try switching from cv2.VideoCapture(0) to cv2.VideoCapture(1)
+* Improve lighting
+* Adjust SMILE_THRESHOLD
+* Ensure hands/face are in frame
 
-🖼️ Emoji Not Showing
+---
 
-Make sure image files are in the same directory
+## 🔍 Tech Behind the Scenes
 
-Check spelling: smile.jpg, plain.png, air.jpg
+* **OpenCV** → Captures + displays video
+* **MediaPipe** → Pose + face mesh detection
+* **NumPy** → Mathematical calculations
+* **Custom Logic** → Thresholds + detection rules
 
-Images shouldn’t be corrupted
+---
 
-🤖 Detection Feels Off?
+## 📦 Dependencies
 
-Improve lighting
-
-Keep your face visible
-
-Adjust SMILE_THRESHOLD
-
-Ensure arms are visible for pose detection
-
-🔍 Under the Hood
-
-OpenCV → For camera handling and display
-
-MediaPipe → Pose + Face Mesh detection
-
-NumPy → Math magic behind the scenes
-
-All working together for instant, expressive feedback in real time.
-
-📦 Dependencies
-
+```
 opencv-python
-
 mediapipe
-
 numpy
+```
 
-You can find them (and pinned versions) in requirements.txt & requirements-lock.txt.
+Dependencies are pinned in `requirements.txt` and `requirements-lock.txt`.
+
+---
