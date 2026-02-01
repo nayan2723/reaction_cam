@@ -8,7 +8,6 @@ Emoji Reactor is a real-time, camera-powered emoji app that reacts to your facia
 
 * 👐 **Hand Detection** – Raise both hands above your shoulders → 🙌
 * 😁 **Smile Detection** – Flash a smile → 😊
-* 😐 **Neutral Mode** – Default relaxed face → 😐
 * ⚙️ **Real-Time Feedback** – Fast, accurate detection
 * 🔄 **Two-Window Display** – Live camera + emoji output
 
